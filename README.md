@@ -27,6 +27,8 @@ https://hub.docker.com/repository/docker/alexteedev/custom-nginx
 
 ![Задача5](https://github.com/user-attachments/assets/d0478384-a22e-4e5a-85af-cdfecf8e4de0)
 
+compose.yml
+```
 version: "3"
 include:
   - docker-compose.yaml
@@ -36,4 +38,4 @@ services:
     image: portainer/portainer-ce:latest
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-
+```
