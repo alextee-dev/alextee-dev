@@ -1,7 +1,9 @@
 Dockerfile
+
 ![Dockerfile](https://github.com/user-attachments/assets/8b5b1548-5236-4ea7-bffd-d6815cb03536)
 
 Dockerignore
+
 ![dockerignore](https://github.com/user-attachments/assets/82bc4ad2-69c1-4a32-a401-2787ce5e23da)
 
 
