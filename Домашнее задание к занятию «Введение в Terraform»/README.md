@@ -3,4 +3,7 @@ terraform --version
 
 Задание 1
   1. ![image](https://github.com/user-attachments/assets/bd1c81f5-5951-439d-84bf-014f2557d89c)
-  2. В personal.auto.tfvars
+  2.
+    a) В любом файле, находящимся в директории ".terraform/"
+    b) в любом файле, имя которого начинается с .terraform*, кроме .terraformrc
+    c) В personal.auto.tfvars 
