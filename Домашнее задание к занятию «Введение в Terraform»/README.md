@@ -7,3 +7,4 @@ terraform --version
     a) В любом файле, находящимся в директории ".terraform/"
     b) в любом файле, имя которого начинается с .terraform*, кроме .terraformrc
     c) В personal.auto.tfvars 
+  3. "result": "xBhgLI3Z29aYtHC0"
