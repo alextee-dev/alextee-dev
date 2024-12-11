@@ -22,3 +22,7 @@ terraform --version
 
   6. Не посмотрев перед применением конфиг, можно выкатить то, чего не планировалось. Ключ -auto-approve может пригодиться для автоматизации или для массовых изменений
      ![hello docker ps](https://github.com/user-attachments/assets/5c597ee5-80ef-4f0b-9d08-f6cf0fe3aa3b)
+
+  7.
+![image](https://github.com/user-attachments/assets/e877b042-aa25-4ec7-a27e-5a83cb4a9664)
+
