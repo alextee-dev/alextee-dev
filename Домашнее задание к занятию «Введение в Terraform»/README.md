@@ -19,3 +19,6 @@ terraform --version
   5.
 ![Задание 1-5](https://github.com/user-attachments/assets/cffbc7ed-ac6a-45d2-9c9c-ba8e2f90a8e2)
 ![docker ps](https://github.com/user-attachments/assets/995bad81-e891-493e-b4cb-822feb5484a9)
+
+  6. Не посмотрев перед применением конфиг, можно выкатить то, чего не планировалось. Ключ -auto-approve может пригодиться для автоматизации или для массовых изменений
+     ![hello docker ps](https://github.com/user-attachments/assets/5c597ee5-80ef-4f0b-9d08-f6cf0fe3aa3b)
