@@ -26,3 +26,7 @@ terraform --version
   7.
 ![image](https://github.com/user-attachments/assets/e877b042-aa25-4ec7-a27e-5a83cb4a9664)
 
+  8. Потому что в блоке resource "docker_image" "nginx" есть параметр keep_locally = true.
+     ![Скриншот 11-12-2024 170915](https://github.com/user-attachments/assets/480123b9-3716-4576-b4a5-652ad1aded03)
+
+
