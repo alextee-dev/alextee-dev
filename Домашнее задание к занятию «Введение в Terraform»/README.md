@@ -76,3 +76,9 @@ resource "docker_container" "mysql" {
   }
 }
 ```
+
+Задание 3
+
+![1](https://github.com/user-attachments/assets/33136132-b975-4f41-8423-735e367552c8)
+![2](https://github.com/user-attachments/assets/0e43dde2-b401-4158-bbc4-d56398291f2e)
+
