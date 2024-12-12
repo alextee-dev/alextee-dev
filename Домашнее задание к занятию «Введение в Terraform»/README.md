@@ -30,3 +30,49 @@ terraform --version
      ![Скриншот 11-12-2024 170915](https://github.com/user-attachments/assets/480123b9-3716-4576-b4a5-652ad1aded03)
 
 
+Задание 2
+```
+terraform {
+  required_providers {
+    docker = {
+      source  = "kreuzwerker/docker"
+      version = "~> 3.0.1"
+    }
+  }
+  required_version = ">=1.8.4"
+}
+
+provider "docker" {
+  host     = "ssh://yc-user@158.160.10.98"
+}
+
+resource "random_password" "random_string" {
+  length      = 16
+  special     = false
+  min_upper   = 1
+  min_lower   = 1
+  min_numeric = 1
+}
+
+resource "random_password" "random_string2" {
+  length      = 16
+  special     = false
+  min_upper   = 1
+  min_lower   = 1
+  min_numeric = 1
+}
+
+resource "docker_image" "mysql" {
+  name         = "mysql:8"
+  keep_locally = false
+}
+
+resource "docker_container" "mysql" {
+  image = docker_image.mysql.image_id
+  name = "mysql_homework"
+  env = ["MYSQL_ROOT_PASSWORD=${random_password.random_string.result}", "MYSQL_DATABASE=Terrhome", "MYSQL_USER=terrhome", "MYSQL_PASSWORD=${random_password.random_string2.result}", "MYSQL_ROOT_HOST=%"]
+  ports {
+    internal = 3306
+  }
+}
+```
