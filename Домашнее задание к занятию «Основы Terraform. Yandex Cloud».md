@@ -1,4 +1,4 @@
-Задание 1
+**Задание 1**
 ```
 resource "yandex_vpc_network" "develop" {
   name = var.vpc_name
@@ -51,7 +51,8 @@ resource "yandex_compute_instance" "platform" {
 	      cores         = 1 - для этой платформы нельзя назначить менее 2 CPU
     1.6 preemptible = true и core_fraction=5 заметно снизят стоимость вм в облаке
 
-Задание 2
+**Задание 2**
+
 Variables.tf
 ```
 variable "cloud_id" {
@@ -161,7 +162,7 @@ resource "yandex_compute_instance" "platform" {
 ```
 ![image](https://github.com/user-attachments/assets/bee691b5-d302-4830-bd63-68a9eec8faf1)
 
-Задание 3
+**Задание 3**
 
 main.tf
 
