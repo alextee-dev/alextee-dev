@@ -50,3 +50,114 @@ resource "yandex_compute_instance" "platform" {
     1.4 platform_id = "standart-v4" - в соотвествии со статьей https://yandex.cloud/ru/docs/compute/concepts/vm-platforms нет платформы v4, также допущена ошибка в слове standard
 	      cores         = 1 - для этой платформы нельзя назначить менее 2 CPU
     1.6 preemptible = true и core_fraction=5 заметно снизят стоимость вм в облаке
+
+Задание 2
+Variables.tf
+```
+variable "cloud_id" {
+  type        = string
+  default     = "b1g6ufvpo7vkirq2qlm7"
+  description = "https://cloud.yandex.ru/docs/resource-manager/operations/cloud/get-id"
+}
+
+variable "folder_id" {
+  type        = string
+  default     = "b1g7scrj5f0n2u2d9n3l"
+  description = "https://cloud.yandex.ru/docs/resource-manager/operations/folder/get-id"
+}
+
+variable "default_zone" {
+  type        = string
+  default     = "ru-central1-a"
+  description = "https://cloud.yandex.ru/docs/overview/concepts/geo-scope"
+}
+variable "default_cidr" {
+  type        = list(string)
+  default     = ["10.1.30.0/24"]
+  description = "https://cloud.yandex.ru/docs/vpc/operations/subnet-create"
+}
+
+variable "vpc_name" {
+  type        = string
+  default     = "terraform-lab"
+  description = "VPC network & subnet name"
+}
+
+variable "vms_ssh_root_key" {
+  type        = string
+  default     = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMj9cW+g+/Nz7G8IgpTcUcupNyS7frO5j9e+7VSAkLp9"
+  description = "ssh-keygen -t ed25519"
+}
+
+variable "vm_web_os_family" {
+  type        = string
+  default     = "ubuntu-2004-lts"
+  description = "OS Family"
+}
+
+variable "vm_web_name" {
+  type        = string
+  default     = "netology-develop-platform-web"
+  description = "VM Name"
+}
+
+variable "vm_web_platform" {
+  type        = string
+  default     = "standard-v2"
+  description = "VM Platform Id"
+}
+
+variable "vm_web_resources" {
+  type        = map(number)
+  default     = { cores = 2, memory = 1, core_fraction = 5 }
+  description = "VM Resources"
+}
+```
+
+main.tf
+```
+resource "yandex_vpc_network" "develop" {
+  name = var.vpc_name
+}
+resource "yandex_vpc_subnet" "develop" {
+  name           = var.vpc_name
+  zone           = var.default_zone
+  network_id     = yandex_vpc_network.develop.id
+  v4_cidr_blocks = var.default_cidr
+}
+
+
+data "yandex_compute_image" "ubuntu" {
+  family = "${var.vm_web_os_family}"
+}
+resource "yandex_compute_instance" "platform" {
+  name        = "${var.vm_web_name}"
+  platform_id = "${var.vm_web_platform}"
+  resources {
+    cores         = "${var.vm_web_resources.cores}"
+    memory        = "${var.vm_web_resources.memory}"
+    core_fraction = "${var.vm_web_resources.core_fraction}"
+  }
+  boot_disk {
+    initialize_params {
+      image_id = data.yandex_compute_image.ubuntu.image_id
+    }
+  }
+  scheduling_policy {
+    preemptible = true
+  }
+  network_interface {
+    subnet_id = yandex_vpc_subnet.develop.id
+    nat       = true
+  }
+
+  metadata = {
+    serial-port-enable = 1
+    ssh-keys           = "ubuntu:${var.vms_ssh_root_key}"
+  }
+
+}
+
+```
+![image](https://github.com/user-attachments/assets/bee691b5-d302-4830-bd63-68a9eec8faf1)
+
