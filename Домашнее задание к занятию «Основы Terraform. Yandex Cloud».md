@@ -362,5 +362,10 @@ variable "vm_db_zone" {
   description = "VM zone"
 }
 ```
+![image](https://github.com/user-attachments/assets/1bc623a4-4c6e-423c-9035-ee7724ef1bbd)
+
+**Задание 4**
+
+![image](https://github.com/user-attachments/assets/6c62b49c-7989-4b93-a79f-af664358f9ce)
 
 
