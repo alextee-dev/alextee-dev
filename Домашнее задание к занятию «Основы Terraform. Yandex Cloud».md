@@ -704,3 +704,7 @@ variable "vm_db_zone" {
   description = "VM zone"
 }
 ```
+
+**Задание 7**
+
+![image](https://github.com/user-attachments/assets/d6186267-ab22-42bc-b4e5-5d94f4566c03)
