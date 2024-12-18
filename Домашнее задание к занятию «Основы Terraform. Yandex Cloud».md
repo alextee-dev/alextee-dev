@@ -730,3 +730,121 @@ variable "test" {
 var.test.env.dev1.0
 
 ![image](https://github.com/user-attachments/assets/66f3f8e2-fe2d-4555-bd56-34abee0281d7)
+
+**Задание 9**
+
+main.tf
+
+```
+resource "yandex_vpc_network" "develop-a" {
+  name = var.vpc_name1
+}
+resource "yandex_vpc_subnet" "develop-a" {
+  name           = var.vpc_name1
+  zone           = var.default_zone-a
+  network_id     = yandex_vpc_network.develop-a.id
+  v4_cidr_blocks = var.default_cidr-a
+  route_table_id = yandex_vpc_route_table.rt1.id
+}
+
+resource "yandex_vpc_network" "develop-b" {
+  name = var.vpc_name2
+}
+resource "yandex_vpc_subnet" "develop-b" {
+  name           = var.vpc_name2
+  zone           = var.default_zone-b
+  network_id     = yandex_vpc_network.develop-b.id
+  v4_cidr_blocks = var.default_cidr-b
+  route_table_id = yandex_vpc_route_table.rt2.id
+}
+
+resource "yandex_vpc_gateway" "nat_gateway" {
+  name = "test-gateway"
+  shared_egress_gateway {}
+}
+
+resource "yandex_vpc_route_table" "rt1" {
+  name       = "test-route-table1"
+  network_id = yandex_vpc_network.develop-a.id
+
+  static_route {
+    destination_prefix = "0.0.0.0/0"
+    gateway_id         = yandex_vpc_gateway.nat_gateway.id
+  }
+}
+
+resource "yandex_vpc_route_table" "rt2" {
+  name       = "test-route-table2"
+  network_id = yandex_vpc_network.develop-b.id
+
+  static_route {
+    destination_prefix = "0.0.0.0/0"
+    gateway_id         = yandex_vpc_gateway.nat_gateway.id
+  }
+}
+
+data "yandex_compute_image" "ubuntu" {
+  family = "${var.vm_web_os_family}"
+}
+resource "yandex_compute_instance" "platform" {
+  name        = "${local.web_name}"
+  platform_id = "${var.vm_web_platform}"
+  resources {
+    cores         = "${var.vms_resources.web.cores}"
+    memory        = "${var.vms_resources.web.memory}"
+    core_fraction = "${var.vms_resources.web.core_fraction}"
+  }
+  boot_disk {
+    initialize_params {
+      image_id = data.yandex_compute_image.ubuntu.image_id
+    }
+  }
+  scheduling_policy {
+    preemptible = true
+  }
+  network_interface {
+    subnet_id = yandex_vpc_subnet.develop-a.id
+    nat       = false
+  }
+
+  metadata = {
+    serial-port-enable = "${var.vms_meta.data.serial-port-enable}"
+    ssh-keys           = "${var.vms_meta.data.ssh-keys}"
+  }
+
+}
+
+resource "yandex_compute_instance" "platform2" {
+  name        = "${local.db_name}"
+  platform_id = "${var.vm_db_platform}"
+  zone        = "${var.vm_db_zone}"
+  resources {
+    cores         = "${var.vms_resources.db.cores}"
+    memory        = "${var.vms_resources.db.memory}"
+    core_fraction = "${var.vms_resources.db.core_fraction}"
+  }
+  boot_disk {
+    initialize_params {
+      image_id = data.yandex_compute_image.ubuntu.image_id
+    }
+  }
+  scheduling_policy {
+    preemptible = true
+  }
+  network_interface {
+    subnet_id = yandex_vpc_subnet.develop-b.id
+    nat       = false
+  }
+
+  metadata = {
+    serial-port-enable = "${var.vms_meta.data.serial-port-enable}"
+    ssh-keys           = "${var.vms_meta.data.ssh-keys}"
+  }
+
+}
+```
+![image](https://github.com/user-attachments/assets/42062b1f-ec07-4cf8-b2dc-184f617b7574)
+
+![image](https://github.com/user-attachments/assets/31d7e781-8df0-4a90-98f6-ff3404feb8e8)
+
+
