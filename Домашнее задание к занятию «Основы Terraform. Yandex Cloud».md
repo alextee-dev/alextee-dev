@@ -708,3 +708,25 @@ variable "vm_db_zone" {
 **Задание 7**
 
 ![image](https://github.com/user-attachments/assets/d6186267-ab22-42bc-b4e5-5d94f4566c03)
+
+**Задание 8**
+
+```
+variable "test" {
+  type = map(object({
+    dev1 = tuple([ string,string ])
+    dev2 = tuple([ string,string ])
+    prod1 = tuple([ string,string ])
+  }))
+  default = {
+    "env" = {
+      "dev1" = ["ssh -o 'StrictHostKeyChecking=no' ubuntu@62.84.124.117", "10.0.1.7"]
+      "dev2" = ["ssh -o 'StrictHostKeyChecking=no' ubuntu@84.252.140.88", "10.0.2.29"]
+      "prod1" = ["ssh -o 'StrictHostKeyChecking=no' ubuntu@51.250.2.101", "10.0.1.30"]
+      }
+    }
+  }
+```
+var.test.env.dev1.0
+
+![image](https://github.com/user-attachments/assets/66f3f8e2-fe2d-4555-bd56-34abee0281d7)
