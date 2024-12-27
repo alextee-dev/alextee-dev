@@ -1,3 +1,4 @@
 **Задание 1**
 
-![image](https://github.com/user-attachments/assets/54330a7f-fa28-4110-a9ce-880e22ab3236)
+![image](https://github.com/user-attachments/assets/7031ddcc-b1d3-4ad8-a102-b683e0217180)
+
