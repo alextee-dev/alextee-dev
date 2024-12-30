@@ -244,3 +244,5 @@ resource "yandex_compute_instance" "platform3" {
 ![image](https://github.com/user-attachments/assets/acce3274-51ae-41b5-b3d8-923ed4df62fa)
 
 **Задание 4**
+
+![image](https://github.com/user-attachments/assets/cbc37aa8-19d7-4ee4-a53d-c8ac0e3b52f0)
