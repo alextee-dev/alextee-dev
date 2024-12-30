@@ -242,3 +242,5 @@ resource "yandex_compute_instance" "platform3" {
 ```
 
 ![image](https://github.com/user-attachments/assets/acce3274-51ae-41b5-b3d8-923ed4df62fa)
+
+**Задание 4**
