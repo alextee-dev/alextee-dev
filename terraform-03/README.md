@@ -346,3 +346,12 @@ ${i["name"]}   ansible_host=${i["network_interface"][0]["nat_ip_address"] != "" 
 ${storage["name"]}   ansible_host=ansible_host=${storage["network_interface"][0]["nat_ip_address"] != "" ? storage["network_interface"][0]["nat_ip_address"] : storage["network_interface"][0]["ip_address"]}   fqdn=${storage["fqdn"]}}
 
 ```
+**Задание 7**
+
+```
+{
+  network_id  = local.vpc.network_id
+  subnet_ids  = concat(slice(local.vpc.subnet_ids, 0, 2), slice(local.vpc.subnet_ids, 3, 4))
+  subnet_zones = concat(slice(local.vpc.subnet_zones, 0, 2), slice(local.vpc.subnet_zones, 3, 4))
+}
+```
