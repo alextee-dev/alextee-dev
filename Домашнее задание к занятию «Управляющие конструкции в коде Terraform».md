@@ -178,3 +178,12 @@ variable "each_vm" {
 }
 
 ```
+
+locals.tf
+
+```
+locals {
+
+key = file("~/.ssh/ycservice.pub")
+    }
+```
