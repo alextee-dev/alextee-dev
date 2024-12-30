@@ -36,7 +36,7 @@ resource "yandex_compute_instance" "platform2" {
 
   metadata = {
     serial-port-enable = "${var.vms_meta.data.serial-port-enable}"
-    ssh-keys           = "${local.key}"
+    ssh-keys           = "${local.ubukey}"
   }
 }
 ```
@@ -75,7 +75,7 @@ resource "yandex_compute_instance" "platform" {
 
   metadata = {
     serial-port-enable = "${var.vms_meta.data.serial-port-enable}"
-    ssh-keys           = "${local.key}"
+    ssh-keys           = "${local.ubukey}"
   }
 }
 ```
@@ -185,6 +185,7 @@ locals.tf
 locals {
 
 key = file("~/.ssh/ycservice.pub")
+ubukey = "ubuntu:${local.key}"
     }
 ```
 
@@ -234,7 +235,7 @@ resource "yandex_compute_instance" "platform3" {
 
   metadata = {
     serial-port-enable = "${var.vms_meta.data.serial-port-enable}"
-    ssh-keys           = "${local.key}"
+    ssh-keys           = "${local.ubukey}"
   }
 
 }
