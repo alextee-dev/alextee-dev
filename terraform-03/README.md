@@ -355,3 +355,11 @@ ${storage["name"]}   ansible_host=ansible_host=${storage["network_interface"][0]
   subnet_zones = concat(slice(local.vpc.subnet_zones, 0, 2), slice(local.vpc.subnet_zones, 3, 4))
 }
 ```
+
+**Задание 8**
+1. Нехватает закрывающей фигурной скобки после ["nat_ip_address"]
+2. Лишний пробел в "platform_id "
+
+**Задание 9**
+1.  [ for i in range("1", "100", 1): "rc${i}"
+2.  [ for i in range("1", "100", 1): "rc${i}" if !contains([0, 7, 8, 9], i % 10) || i == 19 ]
