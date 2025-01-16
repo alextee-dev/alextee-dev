@@ -55,4 +55,136 @@ No modules.
 
 ![image](https://github.com/user-attachments/assets/79bec24e-484f-4cd0-9a79-ff05ba913362)
 
+**Задание 4**
+
+main.tf
+
+```
+module "vpc_prod" {
+  source       = "./vpc"
+  env_name     = var.prod_name
+  name = var.prod_name
+  subnets = var.vpc_prod
+}
+
+module "vpc_dev" {
+  source       = "./vpc"
+  env_name     = var.dev_name
+  name = var.dev_name
+  subnets = var.vpc_dev
+}
+```
+
+variables.tf
+
+```
+variable "vpc_prod" {
+  description = "List of subnets with zones and CIDR blocks"
+  type = list(object({
+    zone = string
+    cidr = list(string)
+  }))
+  default = [
+    {
+      zone = "ru-central1-a"
+      cidr = ["10.0.1.0/24"]
+    },
+    {
+      zone = "ru-central1-b"
+      cidr = ["10.0.2.0/24"]
+    },
+    {
+      zone = "ru-central1-d"
+      cidr = ["10.0.3.0/24"]
+    }
+  ]
+}
+
+variable "vpc_dev" {
+  description = "List of subnets with zones and CIDR blocks"
+  type = list(object({
+    zone = string
+    cidr = list(string)
+  }))
+  default = [
+    {
+      zone = "ru-central1-a"
+      cidr = ["10.0.1.0/24"]
+    }
+  ]
+}
+
+variable "prod_name" {
+  type        = string
+  default     = "prod"
+}
+
+variable "dev_name" {
+  type        = string
+  default     = "dev"
+}
+```
+
+./vpc/main.tf
+
+```
+terraform {
+  required_providers {
+    yandex = {
+      source = "yandex-cloud/yandex"
+    }
+  }
+  required_version = ">=1.8.4"
+}
+
+#создаем облачную сеть
+resource "yandex_vpc_network" "develop" {
+  name = var.name
+}
+
+#создаем подсеть
+resource "yandex_vpc_subnet" "develop_sub" {
+  for_each = { for subnet in var.subnets : subnet.zone => subnet }
+  name           = "${var.name}_${each.key}"
+  zone           = each.value.zone
+  network_id     = yandex_vpc_network.develop.id
+  v4_cidr_blocks = each.value.cidr
+}
+```
+
+./vpc/variables.tf
+
+```
+variable "name" {
+  type    = string
+  default = null
+}
+
+variable "zone" {
+  type    = string
+  default = null
+}
+
+variable "v4_cidr_blocks" {
+  type    = list(string)
+  default = null
+}
+
+variable "env_name" {
+  type    = string
+  default = null
+}
+
+variable "subnets" {
+  type = list(object({
+    zone = string
+    cidr = list(string)
+  }))
+
+}
+```
+
+![image](https://github.com/user-attachments/assets/76dd91ec-72b3-42dd-af17-8e2e000e8f98)
+
+![image](https://github.com/user-attachments/assets/99cdbc94-3afa-4478-b9a9-7d1f8a3d983c)
 
