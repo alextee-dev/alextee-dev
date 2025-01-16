@@ -51,4 +51,8 @@ No modules.
 
 **Задание 3**
 
-![image](https://github.com/user-attachments/assets/5adedd03-cc89-4d85-aef5-9a22ce00eeb0)
+![image](https://github.com/user-attachments/assets/f9d645e0-0e74-48fb-bb94-9abe81969e67)
+
+![image](https://github.com/user-attachments/assets/79bec24e-484f-4cd0-9a79-ff05ba913362)
+
+
