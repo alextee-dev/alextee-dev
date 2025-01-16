@@ -48,3 +48,7 @@ No modules.
 |------|-------------|
 | <a name="output_yandex_vpc_network"></a> [yandex\_vpc\_network](#output\_yandex\_vpc\_network) | n/a |
 | <a name="output_yandex_vpc_subnet"></a> [yandex\_vpc\_subnet](#output\_yandex\_vpc\_subnet) | n/a |
+
+**Задание 3**
+
+![image](https://github.com/user-attachments/assets/5adedd03-cc89-4d85-aef5-9a22ce00eeb0)
