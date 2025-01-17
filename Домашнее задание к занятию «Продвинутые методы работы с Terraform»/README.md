@@ -192,3 +192,20 @@ variable "subnets" {
 **Задание 5**
 
 Ссылка на коммит с полным кодом: https://github.com/alextee-dev/alextee-dev/commit/a2fcd02fd6c03ee0fd1b2d5887b86538cc665ac3
+
+![image](https://github.com/user-attachments/assets/35be8d87-d3e8-474b-b2b9-9a86215ddb25)
+
+![image](https://github.com/user-attachments/assets/84b1c2f6-f216-4460-8ccf-54607ae81da1)
+
+![image](https://github.com/user-attachments/assets/a00c81ba-41f9-41e7-86d8-7f6b0bc53050)
+
+![image](https://github.com/user-attachments/assets/95d2adff-613f-4701-b7a8-8c954d311cd8)
+
+После изменения HA для example на true
+
+![image](https://github.com/user-attachments/assets/ac69e56a-ff90-4bb8-8a4d-fd4847600e57)
+
+![image](https://github.com/user-attachments/assets/8d7e529a-ea24-4fc8-8e1c-6ff81c43b794)
+
+
+
