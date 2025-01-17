@@ -188,3 +188,7 @@ variable "subnets" {
 
 ![image](https://github.com/user-attachments/assets/99cdbc94-3afa-4478-b9a9-7d1f8a3d983c)
 
+
+**Задание 5**
+
+Ссылка на коммит с полным кодом: https://github.com/alextee-dev/alextee-dev/commit/a2fcd02fd6c03ee0fd1b2d5887b86538cc665ac3
