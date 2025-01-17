@@ -9,13 +9,14 @@ terraform {
 
 #создаем облачную сеть
 resource "yandex_vpc_network" "develop" {
-  name = "develop"
+  name = var.name
 }
 
 #создаем подсеть
 resource "yandex_vpc_subnet" "develop_sub" {
-  name           = var.name
-  zone           = var.zone
+  for_each = { for subnet in var.subnets : subnet.zone => subnet }
+  name           = "${var.name}_${each.key}"
+  zone           = each.value.zone
   network_id     = yandex_vpc_network.develop.id
-  v4_cidr_blocks = var.v4_cidr_blocks
+  v4_cidr_blocks = each.value.cidr
 }
