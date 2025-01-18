@@ -211,4 +211,20 @@ variable "subnets" {
 
 ![image](https://github.com/user-attachments/assets/92973835-7119-491c-9f27-85b17f2a0b1e)
 
+```
+resource "vault_generic_secret" "example" {
+  path = "secret/example"
+
+  data_json = <<EOT
+{
+  "user1":   "pass1",
+  "user2": "pass2",
+  "test secret data": "congrats!"
+}
+EOT
+}
+```
+
+![image](https://github.com/user-attachments/assets/ac99806f-8b6d-4ca8-bf02-8b7bc1f85118)
+
 
