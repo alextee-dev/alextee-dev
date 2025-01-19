@@ -207,6 +207,11 @@ variable "subnets" {
 
 ![image](https://github.com/user-attachments/assets/8d7e529a-ea24-4fc8-8e1c-6ff81c43b794)
 
+**Задание 6**
+
+![image](https://github.com/user-attachments/assets/a821ebf5-cece-4381-bd1e-642c645ab394)
+
+
 **Задание 7**
 
 ![image](https://github.com/user-attachments/assets/92973835-7119-491c-9f27-85b17f2a0b1e)
