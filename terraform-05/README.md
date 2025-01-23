@@ -20,5 +20,11 @@ Chekov типы ошибок:
   5) Явно указанный пароль
      ![image](https://github.com/user-attachments/assets/f39c6cc0-1e0e-40c8-98a2-5ceaf48d03fe)
 
+**Задание 2**
 
+![image](https://github.com/user-attachments/assets/d9cd1dc1-80d3-491b-9ff5-9644cedb5a49)
+![image](https://github.com/user-attachments/assets/ac8e7944-70fc-4db3-94ae-e7148fdc5778)
+![image](https://github.com/user-attachments/assets/05050ffd-8ec6-469f-8781-24b6514b4818)
+![image](https://github.com/user-attachments/assets/238191d3-c507-421e-8a70-87c688a5b58f)
+![image](https://github.com/user-attachments/assets/7cd49b94-3608-4941-9bf3-db0b789ff21d)
 
