@@ -56,3 +56,17 @@ variable "ip_addresses" {
 ![image](https://github.com/user-attachments/assets/720a4f85-0038-4f9c-b329-1e7658109894)
 ![image](https://github.com/user-attachments/assets/aa75d378-3f88-4463-aa36-f0cefce6ca39)
 
+**Задание 5**
+
+```
+variable "example_string" {
+  type        = string
+  default     = "строка без верзнего регистра"
+
+  validation {
+    condition     = can(regex("^[a-zа-яё0-9\\s]*$", var.example_string))
+    error_message = "Строка не должна содержать символов верхнего регистра."
+  }
+}
+```
+![image](https://github.com/user-attachments/assets/3c85f65e-0e10-43b7-ac8b-85aa35ab2470)
