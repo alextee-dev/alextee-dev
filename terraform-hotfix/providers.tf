@@ -40,6 +40,10 @@ terraform {
       version = "~> 2"
       source  = "hashicorp/template"
     }
+      random = {
+      version = "~> 2"
+      source  = "hashicorp/random"
+    }
   }
 }
 
