@@ -28,3 +28,6 @@ Chekov типы ошибок:
 ![image](https://github.com/user-attachments/assets/238191d3-c507-421e-8a70-87c688a5b58f)
 ![image](https://github.com/user-attachments/assets/735a7548-9ae7-429b-8454-a2dc0781e82f)
 
+**Задание 3**
+
+https://github.com/alextee-dev/alextee-dev/pull/1
