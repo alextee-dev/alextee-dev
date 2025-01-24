@@ -31,3 +31,28 @@ Chekov типы ошибок:
 **Задание 3**
 
 https://github.com/alextee-dev/alextee-dev/pull/1
+
+**Задание 4**
+
+```
+variable "ip_address" {
+  type        = string
+  description = "IP-адрес"
+  validation {
+    condition     = can(regex("^(25[0-5]|(2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|(2[0-4][0-9]|[01]?[0-9][0-9]?))$", var.ip_address))
+    error_message = "Значение переменной 'ip_address' должно быть корректным IPv4-адресом."
+  }
+}
+
+variable "ip_addresses" {
+  type        = list(string)
+  description = "Список IP-адресов"
+  validation {
+    condition     = alltrue([for ip in var.ip_addresses : can(regex("^(25[0-5]|(2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|(2[0-4][0-9]|[01]?[0-9][0-9]?))$", ip))])
+    error_message = "Все адреса в списке 'ip_addresses' должны быть корректными IPv4-адресами."
+  }
+}
+```
+![image](https://github.com/user-attachments/assets/720a4f85-0038-4f9c-b329-1e7658109894)
+![image](https://github.com/user-attachments/assets/aa75d378-3f88-4463-aa36-f0cefce6ca39)
+
