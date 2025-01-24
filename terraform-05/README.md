@@ -70,3 +70,25 @@ variable "example_string" {
 }
 ```
 ![image](https://github.com/user-attachments/assets/3c85f65e-0e10-43b7-ac8b-85aa35ab2470)
+
+```
+variable "in_the_end_there_can_be_only_one" {
+    description = "Who is better Connor or Duncan?"
+    type = object({
+        Dunkan  = optional(bool)
+        Connor  = optional(bool)
+    })
+
+    default = {
+        Dunkan  = true
+        Connor  = false
+    }
+
+    validation {
+        error_message = "There can be only one MacLeod"
+        condition     = (var.in_the_end_there_can_be_only_one.Dunkan == true && var.in_the_end_there_can_be_only_one.Connor == false) || (var.in_the_end_there_can_be_only_one.Dunkan == false && var.in_the_end_there_can_be_only_one.Connor == true)
+                        
+    }
+}
+```
+![image](https://github.com/user-attachments/assets/a94fd21a-3103-4991-9dc5-d7776cdb39c6)
