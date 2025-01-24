@@ -52,7 +52,7 @@ module "mysql_db_example" {
 
 
 module "marketing-vm" {
-  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
+  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=1.0.0"
   env_name       = var.prod_name
   network_id     = module.vpc_prod.yandex_vpc_network.id
   subnet_zones   = [var.zone1,var.zone2]
@@ -74,7 +74,7 @@ module "marketing-vm" {
 }
 
 module "analytics-vm" {
-  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
+  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=1.0.0"
   env_name       = "stage"
   network_id     = module.vpc_dev.yandex_vpc_network.id
   subnet_zones   = [var.zone1]
