@@ -15,7 +15,7 @@ resource "yandex_mdb_mysql_database" "QWERTY" {
 resource "yandex_mdb_mysql_user" "testuser" {
   cluster_id = var.cluster_id
   name       = var.db_user
-  password   = "qwerty321"
+  password   = var.db_password
   permission {
     database_name = yandex_mdb_mysql_database.QWERTY.name
     roles         = ["ALL"]

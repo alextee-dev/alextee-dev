@@ -13,6 +13,11 @@ variable "subnet_id" {
   default = null
 }
 
+variable "security_group_ids" {
+  type    = list(string)
+  default = null
+}
+
 variable "HA" {
   type        = bool
   default     = null
@@ -43,7 +48,7 @@ variable "mysql_resources" {
       disk_type_id  = "network-hdd"
       disk_size = 20
       zone  = "ru-central1-a"
-      assign_public_ip  = true
+      assign_public_ip  = false
     }
   }
 }
