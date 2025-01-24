@@ -1,3 +1,7 @@
+resource "random_password" "pass" {
+  length = 20
+}
+
 # Модуль создания сети prod
 module "vpc_prod" {
   source       = "./vpc"
@@ -20,6 +24,7 @@ module "mysql" {
   name = var.cluster1_name
   network_id = module.vpc_prod.yandex_vpc_network.id
   subnet_id = module.vpc_prod.yandex_vpc_subnet.ru-central1-a.id
+  security_group_ids = [module.vpc_prod.yandex_vpc_network.default_security_group_id]
   HA = true
   
 }
@@ -30,6 +35,7 @@ module "mysql_db" {
   cluster_id = module.mysql.yandex_mdb_mysql_cluster.id
   db_name = var.db_managed_name
   db_user = var.db_managed_user
+  db_password = random_password.pass.result
 }
 
 # Модуль создания кластера example MySQL
@@ -38,6 +44,7 @@ module "mysql_example" {
   name = var.cluster2_name
   network_id = module.vpc_prod.yandex_vpc_network.id
   subnet_id = module.vpc_prod.yandex_vpc_subnet.ru-central1-a.id
+  security_group_ids = [module.vpc_prod.yandex_vpc_network.default_security_group_id]
   HA = false
   
 }
@@ -48,11 +55,12 @@ module "mysql_db_example" {
   cluster_id = module.mysql_example.yandex_mdb_mysql_cluster.id
   db_name = var.db_example_name
   db_user = var.db_example_user
+  db_password = random_password.pass.result
 }
 
 
 module "marketing-vm" {
-  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=1.0.0"
+  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=f96532a351d512ef1888e6c12a3d47c65fa10479"
   env_name       = var.prod_name
   network_id     = module.vpc_prod.yandex_vpc_network.id
   subnet_zones   = [var.zone1,var.zone2]
@@ -60,7 +68,8 @@ module "marketing-vm" {
   instance_name  = var.vm_marketing_name
   instance_count = 2
   image_family   = var.vm_os_family
-  public_ip      = true
+  public_ip      = false
+  security_group_ids = [module.vpc_prod.yandex_vpc_network.default_security_group_id]
 
   labels = {
     project = "marketing"
@@ -74,7 +83,7 @@ module "marketing-vm" {
 }
 
 module "analytics-vm" {
-  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=1.0.0"
+  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=f96532a351d512ef1888e6c12a3d47c65fa10479"
   env_name       = "stage"
   network_id     = module.vpc_dev.yandex_vpc_network.id
   subnet_zones   = [var.zone1]
@@ -82,7 +91,8 @@ module "analytics-vm" {
   instance_name  = var.vm_analytics_name
   instance_count = 1
   image_family   = var.vm_os_family
-  public_ip      = true
+  public_ip      = false
+  security_group_ids = [module.vpc_dev.yandex_vpc_network.default_security_group_id]
 
   labels = {
     project = "analytics"
