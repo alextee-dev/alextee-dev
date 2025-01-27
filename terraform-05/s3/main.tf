@@ -57,3 +57,31 @@ resource "yandex_ydb_database_iam_binding" "editor" {
     "serviceAccount:${yandex_iam_service_account.sa.id}"
   ]
 }
+
+
+# provider "aws" {
+#  region = var.default_zone
+# endpoints {
+#    dynamodb = yandex_ydb_database_serverless.database1.document_api_endpoint
+#  }
+#  access_key = yandex_iam_service_account_static_access_key.sa-static-key.access_key
+#  secret_key = yandex_iam_service_account_static_access_key.sa-static-key.secret_key
+#  skip_credentials_validation = true
+#  skip_metadata_api_check = true
+#  skip_region_validation = true
+#  skip_requesting_account_id = true
+#  
+#}
+#
+#resource "aws_dynamodb_table" "tfstatelock" {
+#  depends_on = [ yandex_ydb_database_iam_binding.editor, yandex_storage_bucket.test]
+#  name         = "tfstatelock"
+#  billing_mode = "PAY_PER_REQUEST"
+#
+#  hash_key  = "LockID"
+#
+#  attribute {
+#    name = "LockID"
+#    type = "S"
+#  }
+#}
