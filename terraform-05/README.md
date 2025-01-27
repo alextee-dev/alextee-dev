@@ -92,3 +92,7 @@ variable "in_the_end_there_can_be_only_one" {
 }
 ```
 ![image](https://github.com/user-attachments/assets/a94fd21a-3103-4991-9dc5-d7776cdb39c6)
+
+**Задание 7**
+
+https://github.com/alextee-dev/alextee-dev/tree/main/terraform-05/s3
