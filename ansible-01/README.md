@@ -34,3 +34,14 @@ local:
 2. ![image](https://github.com/user-attachments/assets/5123ef98-12d3-449a-a634-835055ceaf39)
 3. ![image](https://github.com/user-attachments/assets/594f06ff-b19c-4738-9516-bd283d0538da)
 4. ![image](https://github.com/user-attachments/assets/6a191818-54ac-457c-8fe6-0805d2102620)
+5.
+```
+docker run -dit --name fed pycontribs/fedora
+docker run -dit --name centos7 pycontribs/centos:7
+docker run -dit --name ubuntu pycontribs/ubuntu:latest
+ansible-playbook site.yml -i ./inventory/prod.yml --vault-password-file vault.txt
+docker rm -f fed
+docker rm -f centos7
+docker rm -f ubuntu
+```
+![image](https://github.com/user-attachments/assets/b3f3f9a7-26e8-40a5-8b80-65466c43d62c)
