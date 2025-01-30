@@ -1,3 +1,5 @@
+**Обязательная часть**
+
 1. ![image](https://github.com/user-attachments/assets/82a5580c-3c93-4546-b45a-035ffeed2065)
 
 2. ![image](https://github.com/user-attachments/assets/9fe05b60-2af2-4002-b731-7aad232e6e46)
@@ -20,3 +22,8 @@ local:
 ```
     
 ![image](https://github.com/user-attachments/assets/e269b8c5-3e87-4dad-b1b7-43db6cd9e575)
+
+
+**Необязательная часть**
+
+1. ![image](https://github.com/user-attachments/assets/edf909b3-2af8-42f9-add1-747725ed6824)
