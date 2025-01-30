@@ -11,10 +11,12 @@
 9. ansible-doc -t connection -l
     ansible.builtin.local          execute on controller
 
-10-11. ```
-      local:
+10-11.
+```
+local:
     hosts:
       localhost:
         ansible_connection: local
-    ```
-    ![image](https://github.com/user-attachments/assets/e269b8c5-3e87-4dad-b1b7-43db6cd9e575)
+```
+    
+![image](https://github.com/user-attachments/assets/e269b8c5-3e87-4dad-b1b7-43db6cd9e575)
