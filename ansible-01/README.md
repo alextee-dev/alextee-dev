@@ -8,7 +8,10 @@
 
 5-6. ![image](https://github.com/user-attachments/assets/d5faeff8-0464-462b-b022-dab4a1f0ec16)
 
-7-8. ![image](https://github.com/user-attachments/assets/4b9b0cf8-6d54-4be5-be76-bf523fd63c78)
+7. ![image](https://github.com/user-attachments/assets/19467ddd-0198-4c43-ba09-9341dc6b5b37)
+
+8. ![image](https://github.com/user-attachments/assets/55557d51-701e-4220-a41e-145958c54576)
+
 
 9. ansible-doc -t connection -l
     ansible.builtin.local          execute on controller
@@ -26,4 +29,5 @@ local:
 
 **Необязательная часть**
 
-1. ![image](https://github.com/user-attachments/assets/edf909b3-2af8-42f9-add1-747725ed6824)
+1. ![image](https://github.com/user-attachments/assets/7c1b5457-2199-450b-8346-f6e5947772db)
+
