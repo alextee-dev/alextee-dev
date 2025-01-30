@@ -7,3 +7,6 @@
 5-6. ![image](https://github.com/user-attachments/assets/d5faeff8-0464-462b-b022-dab4a1f0ec16)
 
 7-8. ![image](https://github.com/user-attachments/assets/4b9b0cf8-6d54-4be5-be76-bf523fd63c78)
+
+9. ansible-doc -t connection -l
+    ansible.builtin.local          execute on controller
