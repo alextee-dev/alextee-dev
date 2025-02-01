@@ -8,17 +8,20 @@
         name: clickhouse-server
         state: restarted
   tasks:
-    - block:
+    - name: Install clickhouse
+      block:
         - name: Get clickhouse distrib
           ansible.builtin.get_url:
             url: "https://packages.clickhouse.com/rpm/stable/{{ item }}-{{ clickhouse_version }}.noarch.rpm"
             dest: "./{{ item }}-{{ clickhouse_version }}.rpm"
+            mode: "0755"
           with_items: "{{ clickhouse_packages }}"
       rescue:
-        - name: Get clickhouse distrib
+        - name: Get alternative clickhouse distrub
           ansible.builtin.get_url:
             url: "https://packages.clickhouse.com/rpm/stable/clickhouse-common-static-{{ clickhouse_version }}.x86_64.rpm"
             dest: "./clickhouse-common-static-{{ clickhouse_version }}.rpm"
+            mode: "0755"
     - name: Install clickhouse packages
       become: true
       ansible.builtin.yum:
@@ -28,11 +31,11 @@
           - clickhouse-server-{{ clickhouse_version }}.rpm
       notify: Start clickhouse service
     - name: Flush handlers
-      meta: flush_handlers
+      ansible.builtin.meta: flush_handlers
     - name: Create database
       ansible.builtin.command: "clickhouse-client -q 'create database logs;'"
       register: create_db
-      failed_when: create_db.rc != 0 and create_db.rc !=82
+      failed_when: create_db.rc != 0 and create_db.rc != 82
       changed_when: create_db.rc == 0
 
 
@@ -45,29 +48,24 @@
         name: vector
         state: restarted
   tasks:
-    - block:
-      - name: Add the Vector repo
-        ansible.builtin.shell: bash -c "$(curl -L https://setup.vector.dev)"
+    - name: Install Vector
+      block:
+        - name: Add the Vector repo
+          ansible.builtin.shell: bash -c "$(curl -L https://setup.vector.dev)"
+          register: vector_repo
+          changed_when: vector_repo.stdout.find('/etc/yum.repos.d/vector.repo') != -1
 
-      - name: Install vector packages
-        become: true
-        ansible.builtin.yum:
-         name:
-           - vector
+        - name: Install vector packages
+          become: true
+          ansible.builtin.yum:
+            name:
+              - vector
 
-      - name: Add config
-        become: true
-        ansible.builtin.template:
-          src: templates/vector.j2
-          dest: /etc/vector/vector.yaml
-      notify: Start vector service
-    - name: Flush handlers
-      meta: flush_handlers
-    # - name: Install vector packages
-    #   become: true
-    #   ansible.builtin.yum:
-    #     name:
-    #       - vector-{{ vector_version }}.rpm
-    #    notify: Start vector service
-    # - name: Flush handlers
-    #   meta: flush_handlers
+        - name: Add config
+          become: true
+          ansible.builtin.template:
+            src: templates/vector.j2
+            dest: /etc/vector/vector.yaml
+            mode: "0755"
+        - name: Flush handlers
+          ansible.builtin.meta: flush_handlers
