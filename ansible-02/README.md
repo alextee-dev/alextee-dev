@@ -48,3 +48,7 @@ vector:
       meta: flush_handlers
 ```
 5. ![image](https://github.com/user-attachments/assets/3f2c2ff9-b336-4ed8-921d-b71cc64133af)
+
+После исправления:
+https://github.com/alextee-dev/alextee-dev/commit/ffbc196d8afbef0397e77f4305dc479a9878102a
+![image](https://github.com/user-attachments/assets/45bcf987-6201-49b5-9658-a7b1c571eb4a)
