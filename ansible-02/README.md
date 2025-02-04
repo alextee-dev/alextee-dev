@@ -1,52 +1,47 @@
-1. prod.yml
-```
----
-clickhouse:
-  hosts:
-    clickhouse-01:
-      ansible_host: 84.252.130.78
-      ansible_connection: ssh
-      ansible_user: ansible
-      ansible_ssh_private_key_file: ~/.ssh/yc-ansible
+# Ansible Playbook: Install Clickhouse and Vector
 
-vector:
-  hosts:
-    vector-01:
-      ansible_host: 89.169.152.24
-      ansible_connection: ssh
-      ansible_user: ansible
-      ansible_ssh_private_key_file: ~/.ssh/yc-ansible
-```
-2-4. 
-```
-- name: Install Vector
-  hosts: vector
-  handlers:
-    - name: Start vector service
-      become: true
-      ansible.builtin.service:
-        name: vector
-        state: restarted
-  tasks:
-    - block:
-      - name: Add the Vector repo
-        ansible.builtin.shell: bash -c "$(curl -L https://setup.vector.dev)"
+## Описание
 
-      - name: Install vector packages
-        become: true
-        ansible.builtin.yum:
-         name:
-           - vector
+Этот Ansible плейбук предназначен для установки и настройки Clickhouse и Vector на целевых хостах. Плейбук включает задачи по загрузке, установке и настройке необходимых пакетов, а также созданию базы данных для Clickhouse.
 
-      - name: Add config
-        become: true
-        ansible.builtin.template:
-          src: templates/vector.j2
-          dest: /etc/vector/vector.yaml
-      notify: Start vector service
-    - name: Flush handlers
-      meta: flush_handlers
-```
+## Плейбуки
+
+### Install Clickhouse
+- **Hosts:** `clickhouse`
+- **Handlers:** 
+  - `Start clickhouse service`: Запускает службу Clickhouse после установки.
+- **Tasks:**
+  - `Get clickhouse distrib`: Загружает дистрибутивы Clickhouse.
+  - `Get alternative clickhouse distrib`: Загружает альтернативный дистрибутив Clickhouse при неудаче.
+  - `Install clickhouse packages`: Устанавливает пакеты Clickhouse.
+  - `Flush handlers`: Применяет все зарегистрированные обработчики.
+  - `Create database`: Создает базу данных `logs`.
+
+### Install Vector
+- **Hosts:** `vector`
+- **Handlers:** 
+  - `Start vector service`: Запускает службу Vector после установки.
+- **Tasks:**
+  - `Add the Vector repo`: Добавляет репозиторий Vector.
+  - `Install vector packages`: Устанавливает пакеты Vector.
+  - `Add config`: Добавляет конфигурационный файл для Vector.
+  - `Flush handlers`: Применяет все зарегистрированные обработчики.
+
+## Переменные
+
+| Переменная              | Описание                                 | Пример значения |
+|-------------------------|------------------------------------------|-----------------|
+| `clickhouse_version`    | Версия Clickhouse                        | `21.3.2.5`      |
+| `clickhouse_packages`   | Список пакетов Clickhouse для установки  | `["clickhouse-common-static", "clickhouse-client", "clickhouse-server"]` |
+
+## Требования
+
+- Ansible 2.9+
+
+
+
+
+## Скриншоты выполения
 5. ![image](https://github.com/user-attachments/assets/3f2c2ff9-b336-4ed8-921d-b71cc64133af)
 
 После исправления:
