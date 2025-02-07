@@ -67,5 +67,6 @@
             src: templates/vector.j2
             dest: /etc/vector/vector.yaml
             mode: "0755"
+          notify: Start vector service
         - name: Flush handlers
           ansible.builtin.meta: flush_handlers
