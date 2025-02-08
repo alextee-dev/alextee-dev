@@ -54,3 +54,11 @@
 
 ## Скриншоты выполения
 
+![image](https://github.com/user-attachments/assets/b93866af-b1ff-4205-8b62-3b0f229f7466)
+
+![image](https://github.com/user-attachments/assets/0219adad-df7c-4a2b-b849-505e29136b1a)
+
+![image](https://github.com/user-attachments/assets/493ffbce-8334-4e51-ac4c-8d55f302a13d)
+
+
+
