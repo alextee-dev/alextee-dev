@@ -1,0 +1,24 @@
+---
+clickhouse:
+  hosts:
+    clickhouse-01:
+      ansible_host: 158.160.39.126
+      ansible_connection: ssh
+      ansible_user: ansible
+      ansible_ssh_private_key_file: ~/.ssh/yc-ansible
+
+lighthouse:
+  hosts:
+    lighthouse-01:
+      ansible_host: 89.169.142.17
+      ansible_connection: ssh
+      ansible_user: ansible
+      ansible_ssh_private_key_file: ~/.ssh/yc-ansible      
+
+vector:
+  hosts:
+    vector-01:
+      ansible_host: 62.84.115.81
+      ansible_connection: ssh
+      ansible_user: ansible
+      ansible_ssh_private_key_file: ~/.ssh/yc-ansible

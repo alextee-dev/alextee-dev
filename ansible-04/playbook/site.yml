@@ -1,0 +1,27 @@
+---
+- name: Install Clickhouse
+  hosts: clickhouse
+  roles:
+    - clickhouse
+
+- name: Install Vector
+  hosts: vector
+  roles:
+    - vector
+
+- name: Install Lighthouse
+  hosts: lighthouse
+  pre_tasks:
+    - name: Install git packages
+      become: true
+      ansible.builtin.yum:
+        name:
+          - git
+
+    - name: Install nginx packages
+      become: true
+      ansible.builtin.yum:
+        name:
+          - nginx
+  roles:
+    - lighthouse
