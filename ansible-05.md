@@ -12,3 +12,8 @@ Molecule
 Tox
 
 ![image](https://github.com/user-attachments/assets/366fc8ea-2bf8-4637-a336-78a16ee11b49)
+
+После изменения версии Ansible в tox.ini
+
+![tox](https://github.com/user-attachments/assets/5285ee2f-b97a-45ce-8b80-ffdf0a2d03e5)
+
