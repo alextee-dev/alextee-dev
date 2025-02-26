@@ -1,6 +1,0 @@
-projectKey=Netology
-serverUrl=http://89.169.143.222:9000
-serverVersion=9.1.0.47736
-dashboardUrl=http://89.169.143.222:9000/dashboard?id=Netology
-ceTaskId=AZVAxKZlH8dt_uwfV7pR
-ceTaskUrl=http://89.169.143.222:9000/api/ce/task?id=AZVAxKZlH8dt_uwfV7pR
