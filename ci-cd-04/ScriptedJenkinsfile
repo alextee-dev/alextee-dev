@@ -1,0 +1,17 @@
+node("linux"){
+    stage("Git checkout"){
+        git credentialsId: '1194e273-c14c-4c3d-be72-e59a48985370', url: 'git@github.com:aragastmatb/example-playbook.git'
+    }
+    stage("Sample define secret_check"){
+        prod_run=true
+    }
+    stage("Run playbook"){
+        if (prod_run){
+            sh 'ansible-playbook site.yml -i inventory/prod.yml --check --diff'
+        }
+        else{
+            sh 'ansible-playbook site.yml -i inventory/prod.yml'  
+        }
+        
+    }
+}
