@@ -11,3 +11,6 @@ Screenshots
 4. ![4-1](https://github.com/user-attachments/assets/ced3ed11-8742-4f7b-936d-3fe830115ccd)
 ![4-2](https://github.com/user-attachments/assets/fc3259e1-2189-4c55-935c-ac3904304b68)
 
+6. ![6-1](https://github.com/user-attachments/assets/0d12159d-d37a-4474-b571-45f2c4fc1769)
+
+7. ![7](https://github.com/user-attachments/assets/ca0a89a2-1cb0-4690-aaec-630556da2dc7)
