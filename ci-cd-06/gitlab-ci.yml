@@ -1,0 +1,21 @@
+stages:
+  - build
+  - deploy
+
+image: docker:28.0.1
+
+services:
+  - docker:28.0.1-dind
+
+builder:
+    stage: build
+    script:
+        - docker build -t cr.yandex/crpuqlmq664rdeh6flfe/hello:gitlab-$CI_COMMIT_SHORT_SHA .
+
+deployer:
+    stage: deploy
+    script:
+        - echo $YC_TOKEN | docker login --username oauth --password-stdin cr.yandex
+        - docker push cr.yandex/crpuqlmq664rdeh6flfe/hello:gitlab-$CI_COMMIT_SHORT_SHA
+    only:
+        - main
