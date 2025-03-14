@@ -10,7 +10,7 @@
 
 3. Написать скрипт для считывания лог файлов и отправки уведомлений на почту определенных событий, можно собирать логи в одном месте например с помощью rsyslog
 
-4. В формуле не учитываются 3хх коды (Redirection). Правильней будет summ_2xx_requests+summ_3xx_requests/summ_all_requests
+4. В формуле не учитываются 3хх коды (Redirection). Правильней будет (summ_2xx_requests+summ_3xx_requests)/summ_all_requests
 
 5. 
 	Pull:
