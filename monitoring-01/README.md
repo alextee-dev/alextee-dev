@@ -38,10 +38,16 @@
 			- Необходимо настраивать агенты на каждом целевом узле для отправки данных
 			- Агенты должны открывать исходящие соединения, что может быть ограничено сетевыми политиками
 
-7. 
+6. 
 	- Prometheus	- pull
 	- TICK		- push
 	- Zabbix		- pull/push
 	- VictoriaMetrics	- pull/push
 	- Nagios		- pull
+
+7. ![7](https://github.com/user-attachments/assets/d226f6d4-f8b1-482b-b663-c0d64d6e7fe8)
+8. ![8](https://github.com/user-attachments/assets/fd9cf143-fdec-4761-9fd4-b3772eb7642e)
+9. ![9](https://github.com/user-attachments/assets/99aa475a-ef5a-4602-b011-7db5dafa66d3)
+
+
 
