@@ -47,13 +47,12 @@
 
 7. ![7](https://github.com/user-attachments/assets/d226f6d4-f8b1-482b-b663-c0d64d6e7fe8)
 
-**Дополнительное задание 2**
-
-![add2](https://github.com/user-attachments/assets/e9795c8b-9699-408e-9f35-eec985db67b7)
-
-
 8. ![8](https://github.com/user-attachments/assets/fd9cf143-fdec-4761-9fd4-b3772eb7642e)
 9. ![9](https://github.com/user-attachments/assets/99aa475a-ef5a-4602-b011-7db5dafa66d3)
 
+
+**Дополнительное задание 2**
+
+![add2](https://github.com/user-attachments/assets/e9795c8b-9699-408e-9f35-eec985db67b7)
 
 
