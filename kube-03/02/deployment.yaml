@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web2-deployment
+  labels:
+    app: web2
+spec:
+  selector:
+    matchLabels:
+      app: web2
+  template:
+    metadata:
+      labels:
+        app: web2
+    spec:
+      initContainers:
+      - name: delay
+        image: busybox
+        command: ['sh', '-c', 'until nslookup web2-svc.default.svc.cluster.local; do echo waiting for service; sleep 2; done;']
+      containers:
+      - name: nginx
+        image: nginx:latest
