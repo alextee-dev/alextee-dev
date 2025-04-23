@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: volume-dep
+  labels:
+    app: vol
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vol
+  template:
+    metadata:
+      labels:
+        app: vol
+    spec:
+      containers:
+      - name: multitool
+        image: wbitt/network-multitool
+        resources: { limits: { cpu: "1", memory: "100Mi"  } }
+        volumeMounts:
+        - mountPath: /logs
+          name: vol1
+        env:
+        - name: HTTP_PORT
+          value: "80"
+        - name: HTTPS_PORT
+          value: "443"
+        ports:
+        - containerPort: 80
+          name: http-port
+        - containerPort: 443
+          name: https-port
+      restartPolicy: Always
+      volumes:
+      - name: vol1
+        persistentVolumeClaim:
+          claimName: my-pvc
+
+
