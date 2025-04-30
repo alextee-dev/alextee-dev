@@ -1,0 +1,9 @@
+name:
+  web1: "nginx"
+  web2: "multi"
+  dep1: "nginx-prod"
+  dep2: "multi-prod"
+  svc1: "nginx-prod-svc"
+  svc2: "multi-prod-svc"
+tag: 1.21.1
+replicas: 2

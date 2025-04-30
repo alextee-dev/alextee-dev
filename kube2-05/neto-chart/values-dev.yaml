@@ -1,0 +1,9 @@
+name:
+  web1: "nginx"
+  web2: "multi"
+  dep1: "nginx-dev"
+  dep2: "multi-dev"
+  svc1: "nginx-dev-svc"
+  svc2: "multi-dev-svc"
+tag: latest
+replicas: 1

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name.dep2 }}
+  labels:
+    app: {{ .Values.name.web2 }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.name.web2 }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name.web2 }}
+    spec:
+      containers:
+      - name: {{ .Values.name.web2 }}
+        image: wbitt/network-multitool
+        env:
+        - name: HTTP_PORT
+          value: "1180"
+        - name: HTTPS_PORT
+          value: "11443"
+        ports:
+        - containerPort: 1180
+          name: http-port
+        - containerPort: 11443
+          name: https-port
