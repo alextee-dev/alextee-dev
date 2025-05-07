@@ -9,6 +9,7 @@
 ![1-4](https://github.com/user-attachments/assets/c63e458e-8967-4622-8afc-e5de7bc532f0)
 
 Инфраструктура: https://github.com/alextee-dev/alextee-dev/tree/main/kube3-02/infra
+
 Предварительная установка: https://github.com/alextee-dev/alextee-dev/tree/main/kube3-02/playbook
 
 **Задание 2**
@@ -16,4 +17,5 @@
 ![2-1](https://github.com/user-attachments/assets/953d9a54-921c-42b2-bacc-7d16a00b472f)
 
 Конфиг keepalived - https://github.com/alextee-dev/alextee-dev/blob/main/kube3-02/keepalived.conf
+
 Конфиг haproxy - https://github.com/alextee-dev/alextee-dev/blob/main/kube3-02/haproxy.cfg
