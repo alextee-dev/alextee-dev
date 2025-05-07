@@ -1,0 +1,30 @@
+- name: Установка Kubernetes кластера с 1 master и 4 worker nodes
+  hosts: master-03
+  become: true
+  tasks:
+    - name: Create a directory
+      ansible.builtin.file:
+        path: /etc/apt/keyrings/
+        state: directory
+        mode: '0755'
+
+    - name: Add gpg key
+      ansible.builtin.shell: curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.33/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+    - name: Add repo
+      ansible.builtin.shell: echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.33/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+    - name: Установка kubelet, kubeadm, kubectl
+      ansible.builtin.apt:
+        name:
+          - kubelet
+          - kubeadm
+          - kubectl
+        state: present
+        update_cache: true
+
+    - name: Отключение swap
+      ansible.builtin.command: swapoff -a
+
+    - name: Enable forwarding
+      ansible.builtin.command: sysctl net.ipv4.ip_forward=1
