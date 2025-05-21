@@ -11,3 +11,5 @@
 Так как версия 1.28 уже существует, обновление прошло успешно, поэтому выставил версию 1.280
 
 ![3](https://github.com/user-attachments/assets/61aff4e7-229b-46fd-9577-e68ced63ef2d)
+
+Манифест: https://github.com/alextee-dev/alextee-dev/blob/main/kube3-04/deployment.yaml
