@@ -14,3 +14,6 @@
 
 
 ![5](https://github.com/user-attachments/assets/855c7f16-2e82-424e-a148-6e0a039b82ed)
+
+
+Манифесты: https://github.com/alextee-dev/alextee-dev/tree/main/cloud-01
