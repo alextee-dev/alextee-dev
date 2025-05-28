@@ -1,0 +1,26 @@
+#cloud-config
+users:
+  - name: atimofeev
+    groups: sudo
+    shell: /bin/bash
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+    ssh_authorized_keys:
+      - ${ssh_public_key}
+package_update: true
+package_upgrade: true
+
+write_files:
+  - path: /var/www/html/index.html
+    content: |
+      <!DOCTYPE html>
+      <html>
+      <head>
+          <title>Welcome to Apache</title>
+      </head>
+      <body>
+          <h1>Hello World!</h1>
+          <img src="https://storage.yandexcloud.net/${bucket_uri}/${object_s3_uri}" style="max-width:100%;max-height:100%;">
+      </body>
+      </html>
+    owner: root:root
+    permissions: '0644'
