@@ -1,0 +1,169 @@
+---
+- name: Install and configure Teamcity on Ubuntu 22.04
+  hosts: teamcity-server
+  become: true
+  tasks:
+    - name: Install required packages
+      ansible.builtin.apt:
+        name:
+          - wget
+          - java-common
+        state: present
+        update_cache: true
+
+    - name: Download Java
+      ansible.builtin.get_url:
+        url: https://corretto.aws/downloads/latest/amazon-corretto-11-x64-linux-jdk.deb
+        dest: /opt/amazon-corretto-11-x64-linux-jdk.deb
+        mode: '0440'
+
+    - name: Install a Java .deb package
+      ansible.builtin.apt:
+        deb: /opt/amazon-corretto-11-x64-linux-jdk.deb
+
+    - name: Extract Teamcity distribution
+      ansible.builtin.unarchive:
+        src: TeamCity-2022.10.1.tar.gz
+        dest: /opt/
+
+    - name: Run Teamcity
+      ansible.builtin.shell: /opt/TeamCity/bin/runAll.sh start
+
+- name: Install Docker on Ubuntu 22.04 Agents
+  hosts: teamcity-agents
+  become: true
+  tasks:
+    - name: Install required packages
+      ansible.builtin.apt:
+        name:
+          - ca-certificates
+          - curl
+          - gnupg
+          - lsb-release
+        state: present
+        update_cache: true
+
+    - name: Add Docker GPG key
+      ansible.builtin.apt_key:
+        url: "https://download.docker.com/linux/ubuntu/gpg"
+        state: present
+
+    - name: Add Docker repository
+      ansible.builtin.apt_repository:
+        repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable"
+        state: present
+        filename: "docker-ce"
+
+    - name: Install Docker packages
+      ansible.builtin.apt:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-compose-plugin
+        state: present
+        update_cache: true
+
+- name: Install kubectl on Ubuntu 22.04 Agents
+  hosts: teamcity-agents
+  become: true
+  tasks:
+    - name: Download kubectl
+      ansible.builtin.shell: curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+
+    - name: Install kubectl
+      ansible.builtin.shell: install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+
+    - name: Create a directory if it does not exist
+      ansible.builtin.file:
+        path: /root/.kube
+        state: directory
+        mode: '0755'
+
+    - name: Copy kube-config
+      ansible.builtin.copy:
+        src: kube-config
+        dest: /root/.kube/config
+        mode: '0644'
+
+
+- name: Install and configure Agent
+  hosts: teamcity-agents
+  become: true
+  tasks:
+    - name: Install required packages
+      ansible.builtin.apt:
+        name:
+          - unzip
+          - java-common
+        state: present
+        update_cache: true
+
+    - name: Download Java
+      ansible.builtin.get_url:
+        url: https://corretto.aws/downloads/latest/amazon-corretto-11-x64-linux-jdk.deb
+        dest: /opt/amazon-corretto-11-x64-linux-jdk.deb
+        mode: '0440'
+
+    - name: Install a Java .deb package
+      ansible.builtin.apt:
+        deb: /opt/amazon-corretto-11-x64-linux-jdk.deb
+
+    - name: Extract Teamcity-agent distribution
+      ansible.builtin.unarchive:
+        src: buildAgentFull.zip
+        dest: /opt/
+
+    - name: Add config
+      ansible.builtin.template:
+        src: buildAgent.properties.j2
+        dest: /opt/conf/buildAgent.properties
+        mode: '0644'
+
+    - name: Run Teamcity-agent
+      ansible.builtin.shell: /opt/bin/agent.sh start
+
+- name: Install Terraform
+  hosts: teamcity-agents
+  become: true
+  tasks:
+    - name: Create terraform directory
+      ansible.builtin.file:
+        path: /opt/Terraform
+        state: directory
+        mode: '0755'
+
+    - name: Extract Terraform
+      ansible.builtin.unarchive:
+        src: terraform_1.12.2_linux_amd64.zip
+        dest: /opt/Terraform/
+
+    - name: Copy public key
+      ansible.builtin.copy:
+        src: /root/.ssh/ycservice.pub
+        dest: /root/.ssh/ycservice.pub
+        mode: '0644'
+
+    - name: Copy key for backend
+      ansible.builtin.copy:
+        src: /root/.terraform_static_key
+        dest: /root/.terraform_static_key
+        mode: '0644'
+
+    - name: Copy auth key for yandex cloud
+      ansible.builtin.copy:
+        src: /root/.authorized_key_terraform.json
+        dest: /root/.authorized_key_terraform.json
+        mode: '0644'
+
+    - name: Copy terraform config
+      ansible.builtin.copy:
+        src: /root/.terraformrc
+        dest: /root/.terraformrc
+        mode: '0644'
+
+    - name: Copy public key2
+      ansible.builtin.copy:
+        src: /root/.ssh/yc-ansible.pub
+        dest: /root/.ssh/yc-ansible.pub
+        mode: '0644'

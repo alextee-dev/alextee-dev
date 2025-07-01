@@ -1,0 +1,14 @@
+---
+- name: Copy files
+  hosts: node1
+  tasks:
+    - name: Clone a repo
+      ansible.builtin.git:
+        repo: 'https://github.com/alextee-dev/kube-prometheus.git'
+        dest: /home/atimofeev/kube-prometheus/
+
+    - name: Fetch kubeconfig
+      ansible.builtin.fetch:
+        src: /root/.kube/config
+        dest: /home/atimofeev/Diploma/ansible/teamcity/kube-config
+        flat: true
