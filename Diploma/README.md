@@ -43,7 +43,8 @@
 
 **Установка и настройка CI/CD**
 
-В качестве CI/CD выбрал TeamCity, отслеживание изменений инфраструктуры также настроил через ci\cd
+В качестве CI/CD выбрал TeamCity, отслеживание изменений инфраструктуры также настроил через ci/cd
+
 Конфигурирую при помощи Ansible - https://github.com/alextee-dev/alextee-dev/tree/main/Diploma/configure/teamcity
 
 ![teamcity](https://github.com/user-attachments/assets/21a3fa62-3973-4c72-b53d-40f81de120ef)
